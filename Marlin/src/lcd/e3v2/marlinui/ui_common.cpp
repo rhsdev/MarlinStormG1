@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -81,9 +81,6 @@ bool MarlinUI::detected() { return true; }
 // Initialize or re-initialize the LCD
 void MarlinUI::init_lcd() {
   DWIN_Startup();
-
-  // Load the assets JPG (currently just the status screen 'icon')
-  DWIN_JPG_CacheTo1(DWIN_MarlinUI_Assets);
 }
 
 // This LCD should clear where it will draw anew

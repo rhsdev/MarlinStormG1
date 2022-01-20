@@ -294,9 +294,13 @@ void MarlinUI::init_lcd() {
 
   TERN_(HAS_LCD_CONTRAST, refresh_contrast());
 
-  TERN_(LCD_SCREEN_ROT_90, u8g.setRot90());
-  TERN_(LCD_SCREEN_ROT_180, u8g.setRot180());
-  TERN_(LCD_SCREEN_ROT_270, u8g.setRot270());
+  #if LCD_SCREEN_ROTATE == 90
+    u8g.setRot90();
+  #elif LCD_SCREEN_ROTATE == 180
+    u8g.setRot180();
+  #elif LCD_SCREEN_ROTATE == 270
+    u8g.setRot270();
+  #endif
 
   update_language_font();
 }
@@ -339,12 +343,14 @@ void MarlinUI::draw_kill_screen() {
 void MarlinUI::clear_lcd() { } // Automatically cleared by Picture Loop
 
 #if HAS_LCD_BRIGHTNESS
+
   void MarlinUI::_set_brightness() {
     #if PIN_EXISTS(TFT_BACKLIGHT)
       if (PWM_PIN(TFT_BACKLIGHT_PIN))
-        analogWrite(pin_t(TFT_BACKLIGHT_PIN), brightness);
+        analogWrite(pin_t(TFT_BACKLIGHT_PIN), backlight ? brightness : 0);
     #endif
   }
+
 #endif
 
 #if HAS_LCD_MENU

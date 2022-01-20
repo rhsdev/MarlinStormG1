@@ -36,6 +36,7 @@
 #elif ENABLED(EXTENSIBLE_UI)
   #include "../../lcd/extui/ui_api.h"
 #elif ENABLED(DWIN_CREALITY_LCD_ENHANCED)
+  #include "../../lcd/e3v2/enhanced/dwin_popup.h"
   #include "../../lcd/e3v2/enhanced/dwin.h"
 #endif
 
@@ -84,7 +85,7 @@ void GcodeSuite::M0_M1() {
 
   #endif
 
-  TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, parser.codenum ? F("M1 Stop") : F("M0 Stop"), FPSTR(CONTINUE_STR)));
+  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_USER_CONTINUE, parser.codenum ? F("M1 Stop") : F("M0 Stop"), FPSTR(CONTINUE_STR)));
 
   TERN_(HAS_RESUME_CONTINUE, wait_for_user_response(ms));
 
