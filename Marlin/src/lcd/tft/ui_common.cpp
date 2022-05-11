@@ -200,7 +200,7 @@ void MarlinUI::init_lcd() {
 
 void MarlinUI::clear_lcd() {
   #if ENABLED(TOUCH_SCREEN)
-    touch.reset();
+    touch.clear();
     draw_menu_navigation = false;
   #endif
 
