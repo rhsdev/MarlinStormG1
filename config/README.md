@@ -11,8 +11,8 @@ Now, [Easyconfig](https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/Marlin/E
 
 Marlin configurations for specific machines are now maintained in their own repository at:
 
-## https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.0.x
+## https://github.com/MarlinFirmware/Configurations/tree/bugfix-2.1.x
 
-Configuration files for use with the nightly `bugfix-2.0.x` branch can be downloaded from:
+Configuration files for use with the nightly `bugfix-2.1.x` branch can be downloaded from:
 
-## https://github.com/MarlinFirmware/Configurations/archive/bugfix-2.0.x.zip
+## https://github.com/MarlinFirmware/Configurations/archive/bugfix-2.1.x.zip
