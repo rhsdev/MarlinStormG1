@@ -35,22 +35,30 @@
 // EEPROM
 //
 
+/**
+ *  Status: Working (FLASH EEPROM EMULATION).
+ *  Hardware: AT24C04C (ATMLH744 04CM) 4 Kb => http://ww1.microchip.com/downloads/en/DeviceDoc/AT24C04C-AT24C08C-I2C-Compatible-%20Two-Wire-Serial-EEPROM-4-Kbit-8-Kbit-20006127A.pdf
+ */
+
 // Use one of these or SDCard-based Emulation will be used
+// FLASH_EEPROM_EMULATION is the recommended and working option.
 #if NO_EEPROM_SELECTED
   //#define SRAM_EEPROM_EMULATION                 // Use BackSRAM-based EEPROM emulation
-  #define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation
-  //#define IIC_BL24CXX_EEPROM                    // Use I2C EEPROM onboard IC (AT24C04C, Size 4K, PageSize 16B)
+  #define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation                
+  //#define I2C_EEPROM                            // Use I2C EEPROM onboard IC
 #endif
 
 #if ENABLED(FLASH_EEPROM_EMULATION)
   // Decrease delays and flash wear by spreading writes across the
   // 128 kB sector allocated for EEPROM emulation.
   #define FLASH_EEPROM_LEVELING
-#elif ENABLED(IIC_BL24CXX_EEPROM)
+#elif ENABLED(I2C_EEPROM)
+  // AT24C04C, Size 4Kb/512B, PageSize 16B
+  // Not working. 512 Bytes are not enough to store all config settings. Tested: Replaced with AT24C256 IC and it works fine. 
   #define IIC_EEPROM_SDA                    PB11
   #define IIC_EEPROM_SCL                    PB10
-  #define EEPROM_DEVICE_ADDRESS             0xA0
-  #define MARLIN_EEPROM_SIZE              0x1000  // 4K
+  #define EEPROM_DEVICE_ADDRESS             0x50
+  #define MARLIN_EEPROM_SIZE                0x200                // 4Kb (From Datasheet)
 #endif
 
 //
@@ -64,7 +72,7 @@
 // Z Probe
 //
 #if ENABLED(BLTOUCH)
-  #error "You will need to use 24V to 5V converter and remove one resistor and capacitor from the motherboard. See https://bit.ly/3xg9cXO for more information. Comment out this line to proceed at your own risk."
+  // You will need to use 24V to 5V converter and remove one resistor and capacitor from the motherboard. See https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/docs/Tutorials/bltouch-en.md for more information.
   #define SERVO0_PIN                        PC3
 #elif !defined(Z_MIN_PROBE_PIN)
   #define Z_MIN_PROBE_PIN                   PC3
@@ -80,8 +88,18 @@
 //
 // Power Loss Detection
 //
+
+/**
+ *  Status: Working. Specially thanks to Zhiniukas and SidDrP for their contributions.
+ *  Hardware: Two pins needed. One for powerloss detection and another to enable aux power from supercap.
+ */
+
 #ifndef POWER_LOSS_PIN
   #define POWER_LOSS_PIN                    PA8
+#endif
+
+#ifndef POWER_LOSS_PIN_2
+  #define POWER_LOSS_PIN_2                  PA3   // Switch to HIGH state to enable SuperCapacitor and supply backup energy. (Zhiniukas & SidDrP)
 #endif
 
 //
@@ -133,6 +151,15 @@
 //
 // LCD / Controller
 //
+
+/**
+ * Status: Working. Merged FSMC/DMA implementation for stm32f4 from jmz52 fork.
+ * Hardware: IC ST7789V | STP320240_0280E2T (40P/1,5): ST7789 (YT280S008)  => https://a.aliexpress.com/_dV4Bghv
+ * Notes: 
+ *  - Defined PINS: CSX, DCX, WRX, RESX, RDX, DB[8:15]
+ *  - FSMC/DMA and 8080-8 interface
+ */
+
 #if HAS_SPI_TFT || HAS_FSMC_TFT
   #define TFT_RESET_PIN                     PE6
   #define TFT_CS_PIN                        PD7
@@ -148,8 +175,13 @@
 
 //
 // Touch Screen
-// https://ldm-systems.ru/f/doc/catalog/HY-TFT-2,8/XPT2046.pdf
 //
+
+/**
+ * Status: Working. Merged implementation from jmz52 fork.
+ * Hardware: TOUCH: XPT2046 => https://ldm-systems.ru/f/doc/catalog/HY-TFT-2,8/XPT2046.pdf
+ */
+
 #if NEED_TOUCH_PINS
   #define TOUCH_CS_PIN                      PB2
   #define TOUCH_SCK_PIN                     PB0
@@ -195,6 +227,12 @@
 //
 // SD Card
 //
+
+/**
+ * Status: SPI Working. Reported random problems with SDIO. 
+ * Need SDIO testing after some recevntly SDIO rework
+ */
+
 //#define SDIO_SUPPORT
 
 #ifndef SDCARD_CONNECTION
@@ -202,13 +240,33 @@
 #endif
 
 #if ENABLED(SDSUPPORT)
+  #ifndef SDIO_D0_PIN
+    #define SDIO_D0_PIN                       PC8
+  #endif
+  #ifndef SDIO_D1_PIN
+    #define SDIO_D1_PIN                       PC9
+  #endif
+  #ifndef SDIO_D2_PIN
+    #define SDIO_D2_PIN                       PC10
+  #endif
+  #ifndef SDIO_D3_PIN
+    #define SDIO_D3_PIN                       PC11
+  #endif
+  #ifndef SDIO_CK_PIN
+    #define SDIO_CK_PIN                       PC12
+  #endif
+  #ifndef SDIO_CMD_PIN
+    #define SDIO_CMD_PIN                      PD2
+  #endif
+
+  #define SDIO_CLOCK                          24000000 // 24 MHz
 
   #if DISABLED(SDIO_SUPPORT)
     #define SOFTWARE_SPI
-    #define SDSS                            PC11
-    #define SD_SCK_PIN                      PC12
-    #define SD_MISO_PIN                     PC8
-    #define SD_MOSI_PIN                     PD2
+    #define SDSS                     SDIO_D3_PIN
+    #define SD_SCK_PIN               SDIO_CK_PIN
+    #define SD_MISO_PIN              SDIO_D0_PIN
+    #define SD_MOSI_PIN              SDIO_CMD_PIN
   #endif
 
   #ifndef SD_DETECT_PIN
@@ -216,3 +274,24 @@
   #endif
 
 #endif
+
+//
+// SPI Flash
+//
+
+/**
+ * Status: Working. Tested with MKS LVGL (needs 480x320 ET5 TFT). Not used.
+ * Hardware: https://www.winbond.com/resource-files/w25q128jv%20revf%2003272018%20plus.pdf
+ */
+
+// SPI Flash
+#define HAS_SPI_FLASH                          1
+#if HAS_SPI_FLASH
+  #define SPI_FLASH_SIZE               0x1000000  // 16MB
+#endif
+
+// SPI 2
+#define SPI_FLASH_CS_PIN                       PB12
+#define SPI_FLASH_MOSI_PIN                     PB15
+#define SPI_FLASH_MISO_PIN                     PB14
+#define SPI_FLASH_SCK_PIN                      PB13
