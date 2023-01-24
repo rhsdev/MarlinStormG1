@@ -42,9 +42,8 @@
  *    You can refer to these defaults on the table below. Any modifications you have
  *    made to your specific printer model which doesn't match the defaults showed below in the
  *    table, must be defined uncommenting corresponding line.
- * 4. Change <ProjectFolder>\ini\stm32f4.ini to uncomment offset line if you are going to build the 
- *    FW to use it with OpenBLT bootloader.
- * 5. Build
+ * 4. Build the FW with/without support for OpenBLT bootloader using the corresponding environment
+ *    (Anet_ET4_OpenBLT/Anet_ET4_no_bootloader).
  * 
  *  ET series default specifications:
  *    +-------------------+-------------+------------+--------------+--------------+---------+
@@ -73,7 +72,7 @@
  * Values: ET_MODEL_ET4 ,ET_MODEL_ET4_PLUS, ET_MODEL_ET4X, ET_MODEL_ET4_PRO, ET_MODEL_ET5, ET_MODEL_ET5X, ET_MODEL_ET5_PRO
  */
 
-#define ET_MODEL                    ET_MODEL_ET4
+#define ET_MODEL                ET_MODEL_ET4
 
 /**
  * Parameter: ET_BOARD
@@ -82,7 +81,7 @@
  * Values: ET_BOARD_SILENT, ET_BOARD_NOISY
  */
 
-//#define ET_BOARD                  ET_BOARD_SILENT
+//#define ET_BOARD              ET_BOARD_SILENT
 
 
 /**
@@ -92,7 +91,7 @@
  * Values: ET_LV_NONE, ET_LV_BLTOUCH, ET_LV_MOUNTED_PROBE, ET_LV_FILM_STRIP
  */
 
-//#define ET_LEVELLING              ET_LV_BLTOUCH
+//#define ET_LEVELLING          ET_LV_BLTOUCH
 
 /**
  * Parameter: ET_Z_HOMING_DIR
@@ -101,7 +100,7 @@
  * Values: ET_Z_HOMING_DIR_UP, ET_Z_HOMING_DIR_DOWN
  */
 
-//#define ET_Z_HOMING_DIR           ET_Z_HOMING_DIR_DOWN
+//#define ET_Z_HOMING_DIR       ET_Z_HOMING_DIR_DOWN
 
 /**
  * Parameter: ET_MOD
@@ -111,7 +110,7 @@
  * Usage: To select multiple mods use '|' to join. ex: #define ET_MOD (ET_MOD_BMG | ET_MOD_V6)
  */
 
-//#define ET_MOD                    ET_MOD_BMG
+//#define ET_MOD                ET_MOD_BMG
 
 /**
  * Parameter: ET_Z_ENDSTOP_POSTION 
@@ -120,7 +119,7 @@
  * Values: ET_Z_ENDSTOP_POSTION_NONE, ET_Z_ENDSTOP_POSTION_TOP, ET_Z_ENDSTOP_POSTION_BOTTOM
  */
 
-//#define ET_Z_ENDSTOP_POSTION      ET_Z_ENDSTOP_POSTION_NONE
+//#define ET_Z_ENDSTOP_POSTION  ET_Z_ENDSTOP_POSTION_NONE
 
 /**
  * Parameter: ET_CUSTOM_MACHINE_NAME
@@ -128,7 +127,7 @@
  * Type: Optional 
  */
 
-#define ET_CUSTOM_MACHINE_NAME     "Anet ET4" 
+#define ET_CUSTOM_MACHINE_NAME  "Anet ET4" 
 
 // ----------------------------------------------
 // 3. Basic Post-installation configuration steps
