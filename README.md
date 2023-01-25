@@ -71,7 +71,7 @@ You have two options to install/update this firmware:
 
 ## Step One: Building from sources
 
-1. Download or clone this [repo](/Marlin/archive/master.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
+1. Download or clone this [repo](https://github.com/davidtgbe/Marlin/archive/master.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
 
 2. You have two options to configure your own Marlin build:
 - a) **Recommended**. Use [EasyConfig](/Marlin/EasyConfig.h) for a simple configuration experience.
