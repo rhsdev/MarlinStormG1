@@ -27,7 +27,7 @@ In summary, after some time dealing with Anet, my personal experience has been r
   - Filament runout detector
   - EEPROM (Flash emulation)
   - Powerloss (Thanks to Zhiniukas & SidDrP)
-  - [Bltouch](https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/docs/Tutorials/bltouch-en.md)
+  - [Bltouch](/docs/Tutorials/bltouch-en.md)
   - PC/SD firmware load/update
     - I've managed to get working OpenBLT, (PC-USB / SD / DFU) updates. ~~I'm still looking for a way to do a first time flash without flasher~~. A hardware flasher is very recommended for its price.
   - Onboard EEPROM I2C (4Kb/512B)
@@ -71,12 +71,15 @@ You have two options to install/update this firmware:
 
 ## Step One: Building from sources
 
-1. Download or clone this [repo](https://github.com/davidtgbe/Marlin/archive/bugfix-2.1.x.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
+1. Download or clone this [repo](/Marlin/archive/master.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
 
 2. You have two options to configure your own Marlin build:
-- a) **Recommended**. Use [EasyConfig](https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/Marlin/EasyConfig.h) for a simple configuration experience. Make sure you read the whole EasyConfig.h file carefully. It contains instructions to configure it.
+- a) **Recommended**. Use [EasyConfig](/Marlin/EasyConfig.h) for a simple configuration experience.
+    - Make sure you read the whole EasyConfig.h file carefully. It contains instructions to configure it.
+    - EasyConfig will override some paremeters of configuration.h and configuration_adv.h.
 - b) Configure your build from scratch.
-    - [User configurations](https://github.com/davidtgbe/Marlin/tree/bugfix-2.0.x/config) **are neither updated nor maintaned**. Please, read the readme.md inside the config folder. **Don't copy paste these files.**
+    - [User configurations](/config) **are neither updated nor maintaned**. Please, read the readme.md inside the config folder. **Don't copy paste these files.**
+    - [Marlin configurations](https://github.com/MarlinFirmware/Configurations/tree/import-2.1.x/config/examples/Anet) can also be a place to take a look. **Don't copy paste these files** as there could be a version mismatch between them and this repo.
     - Make sure to modify your config.h and config_adv.h according to your ET4/5 model (ET4, ET5, ET4 PRO, ET4+, ...)
     - Settings as driver model (A4988/TMC2208), Z endstop position (UP/DOWN), TFT resolution, XYZ size, homming offsets, auto bed levelling sensor, etc, need to be defined according to your model.
     - Fine tunning could be needed (e.g. XYZE [steps](https://marlinfw.org/docs/gcode/M092.html) or offsets, Jerks, JD, LA, etc).
