@@ -19,8 +19,10 @@
 
 ## Notes:
 - For the ET5 TFT, which has a resolution of 480x320, take this data into account in all the steps where the resolution is required. 
-- Take a look at the files related with your resolution logic, like [Marlin/src/lcd/tft/ui_480x320.h](https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/Marlin/src/lcd/tft/ui_480x320.h). Sometimes, image paths are hardcoded to show smaller ones in order to free some flash memory, like in this example:
-![Image files](docs/Tutorials/media/../../../media/boot-image-files.jpg)
+- Take a look at the files related with your resolution logic, like [Marlin/src/lcd/tft/ui_480x320.h](/Marlin/src/lcd/tft/ui_480x320.h). Sometimes, image paths are hardcoded to show smaller ones in order to free some flash memory, like in this example:
+
+![Image files](media/boot-image-files.jpg)
+
 There is also a new define in configuration_adv.h called **BOOT_MARLIN_LOGO_SMALL** which must be commented out:
 ```
   #if ENABLED(SHOW_BOOTSCREEN)
