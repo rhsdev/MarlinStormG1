@@ -71,7 +71,7 @@ You have two options to install/update this firmware:
 
 ## Step One: Building from sources
 
-1. Download or clone this [repo](https://github.com/davidtgbe/Marlin/archive/bugfix-2.0.x.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
+1. Download or clone this [repo](https://github.com/davidtgbe/Marlin/archive/bugfix-2.1.x.zip). Ensure you build the firmware with **latest sources**, as firmware.srec file will not be built with older sources.
 
 2. You have two options to configure your own Marlin build:
 - a) **Recommended**. Use [EasyConfig](https://github.com/davidtgbe/Marlin/blob/bugfix-2.0.x/Marlin/EasyConfig.h) for a simple configuration experience. Make sure you read the whole EasyConfig.h file carefully. It contains instructions to configure it.
