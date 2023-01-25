@@ -5,7 +5,7 @@
 Requisitos previos
 
 1.  Última versión del código fuente (descomprimida): [Haga clic
-    aquí](https://github.com/davidtgbe/Marlin/archive/bugfix-2.0.x.zip)
+    aquí](https://github.com/davidtgbe/Marlin/archive/master.zip)
 
 2.  VSCode para su SO/Arquitectura: [Haga clic aquí](https://code.visualstudio.com/download)
 
@@ -60,7 +60,7 @@ Para ajustar Marlin a las especificaciones de su impresora 3D, deberá editar
 el archivo Configuration.h y, si necesita una configuración avanzada, el archivo
 Configuration_adv.h. 
 
-También puede usar el archivo [EasyConfig.h](../../Marlin/EasyConfig.h), que simplifica mucho el proceso. Siga las instrucciones que se detallan el los comentarios de este archivo.
+También puede usar el archivo [EasyConfig.h](/Marlin/EasyConfig.h), que simplifica mucho el proceso. Siga las instrucciones que se detallan el los comentarios de este archivo.
 
 Como se dice en las instrucciones principales, la configuración por defecto está en español y es para ua ET4 con placa silenciosa sin ninguna modificación adicional.
 
