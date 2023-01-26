@@ -55,9 +55,8 @@
 #elif ENABLED(I2C_EEPROM)
   // AT24C04C, Size 4Kb/512B, PageSize 16B
   // Not working. 512 Bytes are not enough to store all config settings. Tested: Replaced with AT24C256 IC and it works fine. 
-  #define IIC_EEPROM_SDA                    PB11
-  #define IIC_EEPROM_SCL                    PB10
-  #define EEPROM_DEVICE_ADDRESS             0x50
+  #define I2C_SDA_PIN                       PB11
+  #define I2C_SCL_PIN                       PB10
   #define MARLIN_EEPROM_SIZE                0x200                // 4Kb (From Datasheet)
 #endif
 
