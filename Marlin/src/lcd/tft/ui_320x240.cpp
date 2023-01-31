@@ -1122,6 +1122,4 @@ void MarlinUI::move_axis_screen() {
   TERN_(HAS_TFT_XPT2046, add_control(TFT_WIDTH - X_MARGIN - BTN_WIDTH, y, BACK, imgBack));
 }
 
-#undef BTN_WIDTH
-#undef BTN_HEIGHT
 #endif // HAS_UI_320x240
