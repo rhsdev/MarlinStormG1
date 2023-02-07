@@ -1452,8 +1452,6 @@
   // On the Info Screen, display XY with one decimal place when possible
   #define LCD_DECIMAL_SMALL_XY
 
-  //#define LCD_DECIMAL_SMALL_XY
-
   // Show the E position (filament used) during printing
   //#define LCD_SHOW_E_TOTAL
 
@@ -2294,7 +2292,7 @@
   #define MIN_CIRCLE_SEGMENTS    72   // Minimum number of segments in a complete circle
   //#define ARC_SEGMENTS_PER_SEC 50   // Use the feedrate to choose the segment length
   #define N_ARC_CORRECTION       25   // Number of interpolated segments between corrections
-  //#define ARC_P_CIRCLES             // Enable the 'P' parameter to specify complete circles
+  #define ARC_P_CIRCLES             // Enable the 'P' parameter to specify complete circles
   //#define SF_ARC_FIX                // Enable only if using SkeinForge with "Arc Point" fillet procedure
 #endif
 
@@ -3663,7 +3661,7 @@
 // @section reporting
 
 // Extra options for the M114 "Current Position" report
-//#define M114_DETAIL         // Use 'M114` for details to check planner calculations
+#define M114_DETAIL         // Use 'M114` for details to check planner calculations
 //#define M114_REALTIME       // Real current position based on forward kinematics
 //#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
 
@@ -3677,16 +3675,16 @@
 #define FASTER_GCODE_PARSER
 
 #if ENABLED(FASTER_GCODE_PARSER)
-  //#define GCODE_QUOTED_STRINGS  // Support for quoted string parameters
+  #define GCODE_QUOTED_STRINGS    // Support for quoted string parameters
 #endif
 
 // Support for MeatPack G-code compression (https://github.com/scottmudge/OctoPrint-MeatPack)
 #define MEATPACK_ON_SERIAL_PORT_1
 //#define MEATPACK_ON_SERIAL_PORT_2
 
-#define GCODE_CASE_INSENSITIVE  // Accept G-code sent to the firmware in lowercase
+#define GCODE_CASE_INSENSITIVE    // Accept G-code sent to the firmware in lowercase
 
-#define REPETIER_GCODE_M360     // Add commands originally from Repetier FW
+#define REPETIER_GCODE_M360       // Add commands originally from Repetier FW
 
 /**
  * Enable this option for a leaner build of Marlin that removes all
@@ -4280,10 +4278,8 @@
 #define COLOR_PRINT_TIME        COLOR_WHITE
 #define COLOR_PROGRESS_BAR      COLOR_ORANGE2
 #define COLOR_STATUS_MESSAGE    COLOR_ORANGE2
-#define COLOR_SD_ENABLED        COLOR_CONTROL_ENABLED
-#define COLOR_SD_DISABLED       COLOR_CONTROL_DISABLED
 #define COLOR_MENU_TEXT         COLOR_WHITE
-#define COLOR_MENU_VALUE_FONT   COLOR_ORANGE2
+#define COLOR_MENU_VALUE        COLOR_ORANGE2
 #define COLOR_SLIDER            COLOR_ORANGE2
 #define COLOR_INCREASE          COLOR_WHITE
 #define COLOR_DECREASE          COLOR_WHITE
