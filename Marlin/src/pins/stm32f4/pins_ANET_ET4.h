@@ -262,14 +262,15 @@
 
   #if DISABLED(SDIO_SUPPORT)
     #define SOFTWARE_SPI
-    #define SD_SS_PIN                SDIO_D3_PIN
-    #define SD_SCK_PIN               SDIO_CK_PIN
-    #define SD_MISO_PIN              SDIO_D0_PIN
-    #define SD_MOSI_PIN              SDIO_CMD_PIN
+    #define SDSS                              SDIO_D3_PIN
+    #define SD_SS_PIN                         SDSS
+    #define SD_SCK_PIN                        SDIO_CK_PIN
+    #define SD_MISO_PIN                       SDIO_D0_PIN
+    #define SD_MOSI_PIN                       SDIO_CMD_PIN
   #endif
 
   #ifndef SD_DETECT_PIN
-    #define SD_DETECT_PIN                   PD3
+    #define SD_DETECT_PIN                     PD3
   #endif
 
 #endif
