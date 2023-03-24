@@ -157,21 +157,20 @@
 #undef Z_MIN_PROBE_REPEATABILITY_TEST
 #undef BABYSTEP_ZPROBE_OFFSET
 #undef BED_TRAMMING_USE_PROBE
+#undef ASSISTED_TRAMMING
 
 // Redefine
 #if (ET_LEVELLING & ET_LV_FILM_STRIP)
     #define NOZZLE_AS_PROBE
-    #ifndef PROBING_MARGIN
-        #define PROBING_MARGIN 10
-    #endif    
 #elif (ET_LEVELLING & (ET_LV_BLTOUCH | ET_LV_MOUNTED_PROBE))
     #define Z_SAFE_HOMING
     #define Z_MIN_PROBE_REPEATABILITY_TEST
     #define BABYSTEP_ZPROBE_OFFSET
+    #define ASSISTED_TRAMMING
+    #define BED_TRAMMING_USE_PROBE
     #if (ET_LEVELLING & ET_LV_BLTOUCH)
         #define BLTOUCH
         #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN        
-        
         #undef Z_MIN_ENDSTOP_INVERTING
         #undef Z_MIN_PROBE_ENDSTOP_INVERTING        
         #define Z_MIN_ENDSTOP_INVERTING                 false
@@ -181,12 +180,6 @@
     #endif
     #if (ET_Z_ENDSTOP_POSTION & ET_Z_ENDSTOP_POSTION_NONE)
         #define USE_PROBE_FOR_Z_HOMING
-    #endif
-    #ifndef PROBING_MARGIN
-        #define PROBING_MARGIN 25
-    #endif
-    #if ENABLED(LCD_BED_TRAMMING)
-        #define BED_TRAMMING_USE_PROBE
     #endif
 #elif (ET_LEVELLING & ET_LV_NONE)
     #undef LCD_BED_LEVELING
